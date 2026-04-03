@@ -30,9 +30,9 @@ export default function Contact({ navigate: _navigate }: ContactProps) {
   };
 
   return (
-    <div className="bg-cream min-h-screen pt-24">
+    <div className="bg-cream min-h-screen pt-20 md:pt-24">
       {/* Hero */}
-      <section className="py-16 md:py-20 bg-charcoal">
+      <section className="py-10 md:py-20 bg-charcoal">
         <div className="max-w-4xl mx-auto px-4 text-center hero-enter">
           <div className="accent-line-center">
             <h1 className="font-heading text-3xl md:text-5xl font-bold text-cream mb-4">
@@ -49,9 +49,9 @@ export default function Contact({ navigate: _navigate }: ContactProps) {
       <div className="barber-stripe" />
 
       {/* Contact Grid */}
-      <section className="py-16 md:py-24">
+      <section className="py-10 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             {/* Contact Info */}
             <div className="scroll-reveal-left space-y-6">
               <h2 className="font-heading text-2xl font-bold text-charcoal mb-6 accent-line">
@@ -138,7 +138,7 @@ export default function Contact({ navigate: _navigate }: ContactProps) {
 
             {/* Contact Form + Map */}
             <div className="scroll-reveal-right space-y-8">
-              <div className="bg-white rounded-2xl p-8 border border-charcoal/5">
+              <div className="bg-white rounded-2xl p-5 sm:p-8 border border-charcoal/5">
                 <h2 className="font-heading text-2xl font-bold text-charcoal mb-6 accent-line">
                   Send a Message
                 </h2>

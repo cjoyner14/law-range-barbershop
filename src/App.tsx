@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import {
   Phone,
   MapPin,
-  Clock,
   Star,
   Scissors,
   ChevronDown,
@@ -13,6 +12,8 @@ import {
   ChevronRight,
   Calendar,
   Users,
+  Camera,
+  ExternalLink,
 } from 'lucide-react';
 import useScrollReveal from './hooks/useScrollReveal';
 import useSEO from './hooks/useSEO';
@@ -26,10 +27,6 @@ import NotFound from './pages/NotFound';
 /* Swap these with real photos when available */
 const HERO_IMAGE =
   'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80'; // Classic leather barber chair, warm brick wall
-const ABOUT_IMAGE =
-  'https://images.unsplash.com/photo-1747832910187-f27508ac4c60?auto=format&fit=crop&w=800&q=80'; // Barber at work, warm golden light
-const SHOP_IMAGE =
-  'https://images.unsplash.com/photo-1773863683180-f96a39a4804a?auto=format&fit=crop&w=1920&q=80'; // Classic red chairs, wood-paneled interior
 
 /* ── Services data ── */
 const SERVICES = [
@@ -225,7 +222,7 @@ export default function App() {
       />
 
       {/* ── HERO ── */}
-      <section id="hero" className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+      <section id="hero" className="relative min-h-[85vh] sm:min-h-[92vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={HERO_IMAGE}
@@ -252,32 +249,15 @@ export default function App() {
             Downtown Sumter's neighborhood barbershop.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <a
-              href="tel:+18037734812"
-              className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-charcoal font-semibold px-8 py-4 rounded-full transition-all hover:shadow-glow-gold text-lg"
-            >
-              <Phone className="w-5 h-5" />
-              (803) 773-4812
-            </a>
+          <div className="flex items-center justify-center mb-8 px-4 sm:px-0">
             <button
               onClick={() => scrollToSection('services')}
-              className="inline-flex items-center gap-2 border-2 border-white/30 hover:border-gold text-white hover:text-gold px-8 py-4 rounded-full transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-dark text-charcoal font-semibold px-8 py-4 rounded-full transition-all hover:shadow-glow-gold text-base sm:text-lg"
             >
               View Services
             </button>
           </div>
 
-          <div className="flex items-center justify-center gap-6 text-white/70 text-sm">
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-              <Users className="w-4 h-4" />
-              Walk-ins Mornings
-            </div>
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-              <Calendar className="w-4 h-4" />
-              Appointments Afternoons
-            </div>
-          </div>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
@@ -295,7 +275,7 @@ export default function App() {
       <div className="barber-stripe" />
 
       {/* ── ABOUT ── */}
-      <section id="about" className="py-20 md:py-28 bg-cream">
+      <section id="about" className="py-12 md:py-20 lg:py-28 bg-cream">
         <div className="max-w-6xl mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="scroll-reveal">
@@ -317,9 +297,9 @@ export default function App() {
       </div>
 
       {/* ── SERVICES ── */}
-      <section id="services" className="py-20 md:py-28 bg-white">
+      <section id="services" className="py-12 md:py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16 scroll-reveal">
+          <div className="text-center mb-10 md:mb-16 scroll-reveal">
             <div className="accent-line-center">
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">
                 Services & <span className="text-gold-dark">Pricing</span>
@@ -335,7 +315,7 @@ export default function App() {
             {SERVICES.map((s) => (
               <div
                 key={s.name}
-                className="min-w-[280px] max-w-[320px] flex-shrink-0 snap-start card-lift bg-cream rounded-2xl p-8 border border-charcoal/5 hover:border-gold/30 transition-colors"
+                className="min-w-[240px] sm:min-w-[280px] max-w-[320px] flex-shrink-0 snap-start card-lift bg-cream rounded-2xl p-6 sm:p-8 border border-charcoal/5 hover:border-gold/30 transition-colors"
               >
                 <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4">
                   <s.icon className="w-6 h-6 text-gold-dark" />
@@ -354,9 +334,9 @@ export default function App() {
       </div>
 
       {/* ── WALK-IN vs APPOINTMENT ── */}
-      <section id="schedule" className="py-20 md:py-28 bg-cream">
+      <section id="schedule" className="py-12 md:py-20 lg:py-28 bg-cream">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16 scroll-reveal">
+          <div className="text-center mb-10 md:mb-16 scroll-reveal">
             <div className="accent-line-center">
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">
                 Walk-in <span className="text-barber-red">or</span> Appointment
@@ -367,20 +347,20 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 scroll-reveal">
+          <div className="grid grid-cols-2 gap-4 sm:gap-8 scroll-reveal">
             {/* Walk-in */}
-            <div className="bg-white rounded-2xl p-8 md:p-10 border-2 border-gold/20 hover:border-gold/40 transition-colors card-lift">
-              <div className="w-14 h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-6">
-                <Users className="w-7 h-7 text-gold-dark" />
+            <div className="bg-white rounded-2xl p-4 sm:p-8 md:p-10 border-2 border-gold/20 hover:border-gold/40 transition-colors card-lift">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gold/10 flex items-center justify-center mb-3 sm:mb-6">
+                <Users className="w-5 h-5 sm:w-7 sm:h-7 text-gold-dark" />
               </div>
-              <h3 className="font-heading text-2xl font-bold text-charcoal mb-4">
+              <h3 className="font-heading text-base sm:text-2xl font-bold text-charcoal mb-2 sm:mb-4">
                 Walk-Ins Welcome
               </h3>
-              <div className="text-3xl font-bold text-gold-dark mb-2 font-heading">
-                8:30 AM – 12:00 PM
+              <div className="text-lg sm:text-3xl font-bold text-gold-dark mb-1 sm:mb-2 font-heading">
+                8:30 AM – 12 PM
               </div>
-              <p className="text-warm-gray text-sm mb-6">Monday – Friday</p>
-              <ul className="space-y-3 text-warm-gray">
+              <p className="text-warm-gray text-xs sm:text-sm mb-3 sm:mb-6">Monday – Friday</p>
+              <ul className="space-y-2 sm:space-y-3 text-warm-gray text-sm sm:text-base hidden sm:block">
                 <li className="flex items-start gap-3">
                   <Star className="w-4 h-4 text-gold mt-1 flex-shrink-0 fill-gold" />
                   First come, first served
@@ -397,18 +377,18 @@ export default function App() {
             </div>
 
             {/* Appointment */}
-            <div className="bg-charcoal rounded-2xl p-8 md:p-10 card-lift">
-              <div className="w-14 h-14 rounded-2xl bg-gold/20 flex items-center justify-center mb-6">
-                <Calendar className="w-7 h-7 text-gold" />
+            <div className="bg-charcoal rounded-2xl p-4 sm:p-8 md:p-10 card-lift">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-gold/20 flex items-center justify-center mb-3 sm:mb-6">
+                <Calendar className="w-5 h-5 sm:w-7 sm:h-7 text-gold" />
               </div>
-              <h3 className="font-heading text-2xl font-bold text-cream mb-4">
+              <h3 className="font-heading text-base sm:text-2xl font-bold text-cream mb-2 sm:mb-4">
                 By Appointment
               </h3>
-              <div className="text-3xl font-bold text-gold mb-2 font-heading">
-                1:00 PM – 5:30 PM
+              <div className="text-lg sm:text-3xl font-bold text-gold mb-1 sm:mb-2 font-heading">
+                1:00 – 5:30 PM
               </div>
-              <p className="text-cream/60 text-sm mb-6">Monday – Friday</p>
-              <ul className="space-y-3 text-cream/80">
+              <p className="text-cream/60 text-xs sm:text-sm mb-3 sm:mb-6">Monday – Friday</p>
+              <ul className="space-y-2 sm:space-y-3 text-cream/80 text-sm sm:text-base hidden sm:block">
                 <li className="flex items-start gap-3">
                   <Star className="w-4 h-4 text-gold mt-1 flex-shrink-0 fill-gold" />
                   Guaranteed time slot
@@ -424,7 +404,7 @@ export default function App() {
               </ul>
               <a
                 href="tel:+18037734812"
-                className="mt-8 inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-charcoal font-semibold px-6 py-3 rounded-full transition-all w-full justify-center"
+                className="mt-4 sm:mt-8 inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-charcoal font-semibold px-4 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all w-full justify-center text-sm sm:text-base"
               >
                 <Phone className="w-4 h-4" />
                 Book Now
@@ -439,9 +419,9 @@ export default function App() {
       </div>
 
       {/* ── REVIEWS ── */}
-      <section id="reviews" className="py-20 md:py-28 bg-white">
+      <section id="reviews" className="py-12 md:py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12 scroll-reveal">
+          <div className="text-center mb-8 md:mb-12 scroll-reveal">
             <div className="accent-line-center">
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">
                 What Our <span className="text-gold-dark">Customers Say</span>
@@ -475,7 +455,7 @@ export default function App() {
               {REVIEWS.map((r, i) => (
                 <div
                   key={i}
-                  className="min-w-[300px] max-w-[340px] flex-shrink-0 snap-start bg-cream rounded-2xl p-6 border border-charcoal/5"
+                  className="min-w-[260px] sm:min-w-[300px] max-w-[340px] flex-shrink-0 snap-start bg-cream rounded-2xl p-5 sm:p-6 border border-charcoal/5"
                 >
                   <div className="flex gap-1 mb-4">
                     {[...Array(r.rating)].map((_, j) => (
@@ -497,6 +477,31 @@ export default function App() {
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
+
+          {/* Leave a Review CTA */}
+          <div className="mt-10 md:mt-14 scroll-reveal">
+            <div className="bg-charcoal rounded-2xl p-6 sm:p-8 md:p-10 text-center">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gold/20 flex items-center justify-center mx-auto mb-4">
+                <Camera className="w-6 h-6 sm:w-7 sm:h-7 text-gold" />
+              </div>
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-cream mb-2">
+                Love Your Fresh Cut?
+              </h3>
+              <p className="text-cream/70 text-sm sm:text-base mb-6 max-w-md mx-auto">
+                Snap a photo and leave us a Google review — it means the world to a small business like ours.
+              </p>
+              <a
+                href="https://search.google.com/local/writereview?placeid=ChIJx7M_aJYcV4gRAAAAAAAAAAAA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-charcoal font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all hover:shadow-glow-gold text-sm sm:text-base"
+              >
+                <Star className="w-4 h-4 fill-current" />
+                Leave a Google Review
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -505,9 +510,9 @@ export default function App() {
       </div>
 
       {/* ── LOCATION & HOURS ── */}
-      <section id="location" className="py-20 md:py-28 bg-cream">
+      <section id="location" className="py-12 md:py-20 lg:py-28 bg-cream">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16 scroll-reveal">
+          <div className="text-center mb-10 md:mb-16 scroll-reveal">
             <div className="accent-line-center">
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-4">
                 Find Us in <span className="text-gold-dark">Downtown Sumter</span>
@@ -518,9 +523,9 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 items-start">
+          <div className="max-w-3xl mx-auto space-y-6">
             {/* Map */}
-            <div className="scroll-reveal-left rounded-2xl overflow-hidden shadow-card h-[400px]">
+            <div className="scroll-reveal rounded-2xl overflow-hidden shadow-card h-[280px] md:h-[400px]">
               <iframe
                 title="Law Range Barber Shop Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.5!2d-80.3415!3d33.9204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s5+E+Canal+St%2C+Sumter%2C+SC+29150!5e0!3m2!1sen!2sus!4v1"
@@ -531,101 +536,25 @@ export default function App() {
               />
             </div>
 
-            {/* Info */}
-            <div className="scroll-reveal-right space-y-6">
-              <div className="bg-white rounded-2xl p-6 border border-charcoal/5">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-gold-dark" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-bold text-charcoal mb-1">Address</h3>
-                    <p className="text-warm-gray">5 E Canal St</p>
-                    <p className="text-warm-gray">Sumter, SC 29150</p>
-                    <p className="text-warm-gray/60 text-sm mt-1">Next to the old courthouse</p>
-                  </div>
+            {/* Address + Directions */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 scroll-reveal">
+              <div className="flex items-center gap-3 text-center sm:text-left">
+                <MapPin className="w-5 h-5 text-gold-dark flex-shrink-0" />
+                <div>
+                  <p className="text-charcoal font-semibold">5 E Canal St, Sumter, SC 29150</p>
+                  <p className="text-warm-gray text-sm">Next to the old courthouse</p>
                 </div>
               </div>
-
-              <div className="bg-white rounded-2xl p-6 border border-charcoal/5">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-gold-dark" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-bold text-charcoal mb-1">Hours</h3>
-                    <div className="space-y-1 text-warm-gray">
-                      <p>
-                        <span className="font-medium text-charcoal">Mon – Fri</span>{' '}
-                        8:30 AM – 5:30 PM
-                      </p>
-                      <p className="text-sm text-warm-gray/60">
-                        Walk-ins: 8:30 AM – 12:00 PM
-                      </p>
-                      <p className="text-sm text-warm-gray/60">
-                        Appointments: 1:00 PM – 5:30 PM
-                      </p>
-                    </div>
-                    <div className="mt-2 space-y-1 text-warm-gray">
-                      <p>
-                        <span className="font-medium text-charcoal">Sat – Sun</span>{' '}
-                        <span className="text-barber-red">Closed</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 border border-charcoal/5">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-gold-dark" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-bold text-charcoal mb-1">Contact</h3>
-                    <a
-                      href="tel:+18037734812"
-                      className="text-gold-dark hover:text-gold font-semibold text-lg transition-colors"
-                    >
-                      (803) 773-4812
-                    </a>
-                  </div>
-                </div>
-              </div>
-
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=5+E+Canal+St,+Sumter,+SC+29150"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-charcoal hover:bg-charcoal/90 text-cream font-semibold px-6 py-3 rounded-full transition-all w-full justify-center"
+                className="inline-flex items-center gap-2 bg-charcoal hover:bg-charcoal/90 text-cream font-semibold px-6 py-3 rounded-full transition-all"
               >
                 <MapPin className="w-4 h-4" />
                 Get Directions
               </a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SHOP IMAGE SECTION ── */}
-      <section className="relative h-[40vh] overflow-hidden">
-        <img
-          src={SHOP_IMAGE}
-          alt="Inside Law Range Barber Shop"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-charcoal/85 flex items-center justify-center">
-          <div className="text-center hero-enter">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-cream mb-4">
-              Ready for a Fresh Cut?
-            </h2>
-            <a
-              href="tel:+18037734812"
-              className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-charcoal font-semibold px-8 py-4 rounded-full transition-all hover:shadow-glow-gold text-lg"
-            >
-              <Phone className="w-5 h-5" />
-              Call (803) 773-4812
-            </a>
           </div>
         </div>
       </section>
@@ -666,7 +595,7 @@ function Header({
           onClick={() => navigate('/')}
           className="flex items-center gap-3 group"
         >
-            <BarberPoleIcon className={`transition-all duration-300 ${scrolled ? 'w-16 h-16' : 'w-32 h-32'}`} />
+            <BarberPoleIcon className={`transition-all duration-300 ${scrolled ? 'w-14 h-14 md:w-16 md:h-16' : 'w-20 h-20 md:w-32 md:h-32'}`} />
         </button>
 
         {/* Desktop Nav */}
@@ -695,7 +624,14 @@ function Header({
         </nav>
 
         {/* CTA + Mobile menu */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a
+            href="tel:+18037734812"
+            className="sm:hidden inline-flex items-center justify-center w-10 h-10 bg-gold hover:bg-gold-dark text-charcoal rounded-full transition-all"
+            aria-label="Call now"
+          >
+            <Phone className="w-4 h-4" />
+          </a>
           <a
             href="tel:+18037734812"
             className="hidden sm:inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-charcoal font-semibold px-5 py-2.5 rounded-full text-sm transition-all"
@@ -767,23 +703,20 @@ function Footer({
   return (
     <footer className="bg-charcoal text-cream">
       <div className="barber-stripe" />
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div className="md:col-span-1">
-            <div className="mb-4">
-              <BarberPoleIcon className="w-24 h-24" />
-            </div>
-            <p className="text-cream/60 text-sm leading-relaxed mb-4">
-              Classic cuts and timeless style in downtown Sumter, SC.
-            </p>
-            <ShareButtons />
-          </div>
+      <div className="max-w-6xl mx-auto px-4 py-8 md:py-16">
+        {/* Brand row — logo + tagline inline */}
+        <div className="flex items-center gap-3 mb-6 md:mb-10">
+          <BarberPoleIcon className="w-14 h-14 md:w-20 md:h-20 flex-shrink-0" />
+          <p className="text-cream/60 text-sm leading-snug">
+            Classic cuts and timeless style in downtown Sumter, SC.
+          </p>
+        </div>
 
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading font-bold text-gold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
+            <h4 className="font-heading font-bold text-gold mb-3 text-sm">Quick Links</h4>
+            <ul className="space-y-1.5">
               {[
                 { label: 'About', id: 'about' },
                 { label: 'Services', id: 'services' },
@@ -813,28 +746,20 @@ function Footer({
 
           {/* Hours */}
           <div>
-            <h4 className="font-heading font-bold text-gold mb-4">Hours</h4>
-            <div className="mb-3">
+            <h4 className="font-heading font-bold text-gold mb-3 text-sm">Hours</h4>
+            <div className="mb-2">
               <ShopStatus variant="full" />
             </div>
-            <div className="space-y-2 text-cream/60 text-sm">
-              <p>
-                <span className="text-cream">Mon – Fri</span>
-                <br />
-                8:30 AM – 5:30 PM
-              </p>
-              <p className="mt-3">
-                <span className="text-cream">Sat – Sun</span>
-                <br />
-                Closed
-              </p>
+            <div className="space-y-1 text-cream/60 text-sm">
+              <p><span className="text-cream">Mon – Fri</span><br />8:30 AM – 5:30 PM</p>
+              <p><span className="text-cream">Sat – Sun</span><br />Closed</p>
             </div>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-bold text-gold mb-4">Contact</h4>
-            <div className="space-y-3 text-cream/60 text-sm">
+            <h4 className="font-heading font-bold text-gold mb-3 text-sm">Contact</h4>
+            <div className="space-y-2 text-cream/60 text-sm">
               <a
                 href="tel:+18037734812"
                 className="flex items-center gap-2 hover:text-gold transition-colors"
@@ -844,11 +769,7 @@ function Footer({
               </a>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-gold mt-0.5" />
-                <span>
-                  5 E Canal St
-                  <br />
-                  Sumter, SC 29150
-                </span>
+                <span>5 E Canal St<br />Sumter, SC 29150</span>
               </div>
               <a
                 href="https://www.facebook.com/lawrange/"
@@ -861,14 +782,18 @@ function Footer({
               </a>
             </div>
           </div>
+
+          {/* Share */}
+          <div className="col-span-2 md:col-span-2">
+            <h4 className="font-heading font-bold text-gold mb-3 text-sm">Share with a Friend</h4>
+            <p className="text-cream/60 text-sm mb-3">Know someone who needs a fresh cut? Spread the word.</p>
+            <ShareButtons />
+          </div>
         </div>
 
-        <div className="border-t border-cream/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-cream/10 mt-6 md:mt-10 pt-4 md:pt-6 text-center">
           <p className="text-cream/40 text-sm">
             &copy; {new Date().getFullYear()} Law Range Barber Shop. All rights reserved.
-          </p>
-          <p className="text-cream/30 text-xs">
-            5 E Canal St, Sumter, SC 29150 &middot; (803) 773-4812
           </p>
         </div>
       </div>
