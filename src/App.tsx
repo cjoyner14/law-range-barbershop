@@ -17,16 +17,19 @@ import {
 import useScrollReveal from './hooks/useScrollReveal';
 import useSEO from './hooks/useSEO';
 import ShareButtons from './components/ShareButtons';
+import ShopStatus from './components/ShopStatus';
+import BarberPoleIcon from './components/BarberPoleIcon';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
 /* ── Placeholder images (swap with real photos) ── */
+/* Swap these with real photos when available */
 const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80';
+  'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80'; // Classic leather barber chair, warm brick wall
 const ABOUT_IMAGE =
-  'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80';
+  'https://images.unsplash.com/photo-1747832910187-f27508ac4c60?auto=format&fit=crop&w=800&q=80'; // Barber at work, warm golden light
 const SHOP_IMAGE =
-  'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=800&q=80';
+  'https://images.unsplash.com/photo-1773863683180-f96a39a4804a?auto=format&fit=crop&w=1920&q=80'; // Classic red chairs, wood-paneled interior
 
 /* ── Services data ── */
 const SERVICES = [
@@ -65,34 +68,64 @@ const SERVICES = [
 /* ── Reviews data ── */
 const REVIEWS = [
   {
-    text: "Best barber in Sumter, hands down. Kisha always gets the cut right. I've been coming here for years and never been disappointed.",
-    author: 'Marcus T.',
+    text: 'Best barber shop Sumter, Super clean, very polite and quick. I won\'t be going anywhere else.',
+    author: 'Joshua Knestaut',
     rating: 5,
   },
   {
-    text: "Love the atmosphere — feels like a real, old-school barbershop. Clean shop, great conversation, and the best fade I've ever had.",
-    author: 'James W.',
+    text: 'Could not ask for a better Barber, super nice lady as well!',
+    author: 'Curtis Goyette',
     rating: 5,
   },
   {
-    text: 'My sons and I all go to Law Range. Kisha is great with kids and my boys actually look forward to getting their hair cut.',
-    author: 'Darnell R.',
+    text: 'The best haircut I\'ve ever had in Sumter, no doubt. Relaxed friendly atmosphere. Looking forward to all my future haircuts here.',
+    author: 'Paul Rosensteel',
     rating: 5,
   },
   {
-    text: 'Walk-in friendly in the mornings, which is perfect for my schedule. Never have to wait too long and the cuts are always on point.',
-    author: 'Chris B.',
+    text: 'Great haircut and conversation. Keisha is wonderful at providing customers respect and making them feel worthy of friendly conversation.',
+    author: 'Bob Nerbun',
     rating: 5,
   },
   {
-    text: 'Professional, consistent, and always a great experience. Kisha takes pride in every single cut. Highly recommend.',
-    author: 'Anthony L.',
+    text: 'She has a wonderful personality and does a fantastic job, best haircut ever!',
+    author: 'Terry Beers',
     rating: 5,
   },
   {
-    text: "Downtown location is super convenient. I work nearby and pop in on my lunch break for a trim. Can't beat it.",
-    author: 'Kevin D.',
-    rating: 4,
+    text: 'Excellent service and great haircut, first time customer.',
+    author: 'Michael Watts',
+    rating: 5,
+  },
+  {
+    text: 'Excellent haircuts! Best in town!',
+    author: 'Jason Getz',
+    rating: 5,
+  },
+  {
+    text: 'A relaxed atmosphere. Loved listening to different stories being told.',
+    author: "O'Neal Miles",
+    rating: 5,
+  },
+  {
+    text: 'If you know how to ask for it, she can do it!',
+    author: 'Michael Simmons',
+    rating: 5,
+  },
+  {
+    text: 'Cut my hair the way I asked. Very friendly atmosphere.',
+    author: 'Randy McDaniel',
+    rating: 5,
+  },
+  {
+    text: 'Best barber in Sumter. Great cut reasonable price.',
+    author: 'Lath Harris',
+    rating: 5,
+  },
+  {
+    text: 'Kisha is the best.',
+    author: 'Bob Jones',
+    rating: 5,
   },
 ];
 
@@ -112,7 +145,7 @@ export default function App() {
     description:
       currentRoute === 'contact'
         ? 'Contact Law Range Barber Shop in downtown Sumter, SC. Call (803) 773-4812 for appointments or walk in mornings. 5 E Canal St, Sumter, SC 29150.'
-        : 'Law Range Barber Shop — classic cuts and timeless style in downtown Sumter, SC. Walk-ins welcome mornings, appointments available afternoons. 4.8 stars.',
+        : 'Law Range Barber Shop — "Look Sharp and Be Sharp!" Straight razor shaves, classic haircuts & the newest trends in downtown Sumter, SC. Walk-ins & appointments. 4.8 stars.',
     canonical:
       currentRoute === 'contact'
         ? 'https://lawrangebarbershop.com/contact'
@@ -199,7 +232,7 @@ export default function App() {
             alt="Law Range Barber Shop"
             className="ken-burns w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/50 to-charcoal/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/85 via-charcoal/80 to-charcoal/95" />
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto hero-enter">
@@ -209,14 +242,14 @@ export default function App() {
           </div>
 
           <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Classic Cuts.
+            Look Sharp.
             <br />
-            <span className="text-gold">Timeless Style.</span>
+            <span className="text-gold">Be Sharp.</span>
           </h1>
 
           <p className="text-white/80 text-lg md:text-xl mb-8 max-w-2xl mx-auto font-body">
-            Downtown Sumter's neighborhood barbershop. Walk-ins welcome mornings,
-            appointments available afternoons.
+            Straight razor shaves, classic haircuts, or the newest trend — we can do it all.
+            Downtown Sumter's neighborhood barbershop.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
@@ -238,11 +271,11 @@ export default function App() {
           <div className="flex items-center justify-center gap-6 text-white/70 text-sm">
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <Users className="w-4 h-4" />
-              Walk-ins 8:30–12
+              Walk-ins Mornings
             </div>
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <Calendar className="w-4 h-4" />
-              Appts 1–5:30
+              Appointments Afternoons
             </div>
           </div>
         </div>
@@ -264,62 +297,24 @@ export default function App() {
       {/* ── ABOUT ── */}
       <section id="about" className="py-20 md:py-28 bg-cream">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="scroll-reveal-left">
-              <div className="relative">
-                <img
-                  src={ABOUT_IMAGE}
-                  alt="Kisha O'Neal at Law Range Barber Shop"
-                  className="rounded-2xl shadow-card w-full object-cover aspect-[4/5]"
-                />
-                <div className="absolute -bottom-4 -right-4 bg-gold text-charcoal font-bold px-6 py-3 rounded-xl shadow-lg font-heading text-lg">
-                  Owner-Operated
-                </div>
-              </div>
-            </div>
-
-            <div className="scroll-reveal-right">
+          <div className="max-w-3xl mx-auto">
+            <div className="scroll-reveal">
               <div className="accent-line">
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-charcoal mb-6">
-                  Your Barber, <span className="text-gold-dark">Kisha O'Neal</span>
+                  About <span className="text-gold-dark">Law Range</span>
                 </h2>
               </div>
-              <p className="text-warm-gray text-lg leading-relaxed mb-6">
-                Law Range Barber Shop is a classic, owner-operated barbershop in the heart of
-                downtown Sumter. Kisha O'Neal brings years of experience and a genuine passion
-                for the craft to every cut.
+              <p className="text-warm-gray text-lg leading-relaxed">
+                Owner-operated by Kisha O'Neal in the heart of downtown Sumter — right next to the old courthouse. Straight razor shaves, classic cuts, and the newest trends. Walk-ins welcome mornings, appointments afternoons. <span className="text-charcoal font-semibold italic">"Look Sharp and Be Sharp!"</span>
               </p>
-              <p className="text-warm-gray text-lg leading-relaxed mb-6">
-                Located at 5 E Canal St — right next to the old courthouse — Law Range is where
-                the community comes for clean cuts, good conversation, and that timeless
-                barbershop experience.
-              </p>
-              <p className="text-warm-gray text-lg leading-relaxed mb-8">
-                Whether you're a regular or a first-timer, walk-ins are always welcome in the
-                mornings. For afternoon visits, just call ahead to book your spot.
-              </p>
-              <div className="flex items-center gap-4">
-                <a
-                  href="tel:+18037734812"
-                  className="inline-flex items-center gap-2 bg-charcoal hover:bg-charcoal/90 text-cream font-semibold px-6 py-3 rounded-full transition-all"
-                >
-                  <Phone className="w-4 h-4" />
-                  Call Now
-                </a>
-                <button
-                  onClick={() => navigate('/contact')}
-                  className="inline-flex items-center gap-2 border-2 border-charcoal hover:border-gold hover:text-gold-dark font-semibold px-6 py-3 rounded-full transition-all"
-                >
-                  <MapPin className="w-4 h-4" />
-                  Get Directions
-                </button>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="section-divider" />
+      <div className="section-divider">
+        <Scissors className="w-4 h-4 text-gold flex-shrink-0" />
+      </div>
 
       {/* ── SERVICES ── */}
       <section id="services" className="py-20 md:py-28 bg-white">
@@ -336,11 +331,11 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+          <div className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4 scroll-reveal">
             {SERVICES.map((s) => (
               <div
                 key={s.name}
-                className="card-lift bg-cream rounded-2xl p-8 border border-charcoal/5 hover:border-gold/30 transition-colors"
+                className="min-w-[280px] max-w-[320px] flex-shrink-0 snap-start card-lift bg-cream rounded-2xl p-8 border border-charcoal/5 hover:border-gold/30 transition-colors"
               >
                 <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4">
                   <s.icon className="w-6 h-6 text-gold-dark" />
@@ -350,27 +345,13 @@ export default function App() {
                 <span className="text-gold-dark font-semibold text-sm">Call for pricing</span>
               </div>
             ))}
-
-            {/* CTA card */}
-            <div className="card-lift bg-charcoal rounded-2xl p-8 flex flex-col justify-center items-center text-center">
-              <Phone className="w-10 h-10 text-gold mb-4" />
-              <h3 className="font-heading text-xl font-bold text-cream mb-2">Book Your Cut</h3>
-              <p className="text-cream/70 mb-6">
-                Call to schedule an afternoon appointment or walk in before noon.
-              </p>
-              <a
-                href="tel:+18037734812"
-                className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-charcoal font-semibold px-6 py-3 rounded-full transition-all"
-              >
-                <Phone className="w-4 h-4" />
-                (803) 773-4812
-              </a>
-            </div>
           </div>
         </div>
       </section>
 
-      <div className="section-divider" />
+      <div className="section-divider">
+        <Scissors className="w-4 h-4 text-gold flex-shrink-0" />
+      </div>
 
       {/* ── WALK-IN vs APPOINTMENT ── */}
       <section id="schedule" className="py-20 md:py-28 bg-cream">
@@ -453,7 +434,9 @@ export default function App() {
         </div>
       </section>
 
-      <div className="section-divider" />
+      <div className="section-divider">
+        <Scissors className="w-4 h-4 text-gold flex-shrink-0" />
+      </div>
 
       {/* ── REVIEWS ── */}
       <section id="reviews" className="py-20 md:py-28 bg-white">
@@ -517,7 +500,9 @@ export default function App() {
         </div>
       </section>
 
-      <div className="section-divider" />
+      <div className="section-divider">
+        <Scissors className="w-4 h-4 text-gold flex-shrink-0" />
+      </div>
 
       {/* ── LOCATION & HOURS ── */}
       <section id="location" className="py-20 md:py-28 bg-cream">
@@ -629,7 +614,7 @@ export default function App() {
           alt="Inside Law Range Barber Shop"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-charcoal/60 flex items-center justify-center">
+        <div className="absolute inset-0 bg-charcoal/85 flex items-center justify-center">
           <div className="text-center hero-enter">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-cream mb-4">
               Ready for a Fresh Cut?
@@ -675,21 +660,13 @@ function Header({
           : 'bg-charcoal/70 backdrop-blur-sm'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className={`max-w-6xl mx-auto px-4 flex items-center justify-between transition-all duration-300 ${scrolled ? 'py-1' : 'py-3'}`}>
         {/* Logo */}
         <button
           onClick={() => navigate('/')}
           className="flex items-center gap-3 group"
         >
-          <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center">
-            <Scissors className="w-5 h-5 text-charcoal" />
-          </div>
-          <div>
-            <span className="font-heading text-lg font-bold text-cream group-hover:text-gold transition-colors leading-none block">
-              Law Range
-            </span>
-            <span className="text-cream/60 text-xs leading-none block">Barber Shop</span>
-          </div>
+            <BarberPoleIcon className={`transition-all duration-300 ${scrolled ? 'w-16 h-16' : 'w-32 h-32'}`} />
         </button>
 
         {/* Desktop Nav */}
@@ -794,16 +771,8 @@ function Footer({
         <div className="grid md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center">
-                <Scissors className="w-5 h-5 text-charcoal" />
-              </div>
-              <div>
-                <span className="font-heading text-lg font-bold text-cream leading-none block">
-                  Law Range
-                </span>
-                <span className="text-cream/60 text-xs leading-none block">Barber Shop</span>
-              </div>
+            <div className="mb-4">
+              <BarberPoleIcon className="w-24 h-24" />
             </div>
             <p className="text-cream/60 text-sm leading-relaxed mb-4">
               Classic cuts and timeless style in downtown Sumter, SC.
@@ -845,14 +814,15 @@ function Footer({
           {/* Hours */}
           <div>
             <h4 className="font-heading font-bold text-gold mb-4">Hours</h4>
+            <div className="mb-3">
+              <ShopStatus variant="full" />
+            </div>
             <div className="space-y-2 text-cream/60 text-sm">
               <p>
                 <span className="text-cream">Mon – Fri</span>
                 <br />
                 8:30 AM – 5:30 PM
               </p>
-              <p className="text-xs">Walk-ins: 8:30 AM – 12 PM</p>
-              <p className="text-xs">Appointments: 1 – 5:30 PM</p>
               <p className="mt-3">
                 <span className="text-cream">Sat – Sun</span>
                 <br />

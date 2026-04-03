@@ -174,8 +174,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── SECTION DIVIDER ── */
 .section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
   height: 1px;
-  background: linear-gradient(to right, transparent, #D4A574, transparent);
+  background: linear-gradient(to right, transparent, #D4A574);
+  max-width: 200px;
+}
+
+.section-divider::after {
+  background: linear-gradient(to left, transparent, #D4A574);
 }
 
 /* ── FLOATING BADGE ── */
@@ -188,16 +204,8 @@ h1, h2, h3, h4, h5, h6 {
   50%      { transform: translateY(-6px); }
 }
 
-/* ── BARBER POLE STRIPE ── */
+/* ── BARBER ACCENT STRIPE ── */
 .barber-stripe {
-  background: repeating-linear-gradient(
-    -45deg,
-    #B8312F,
-    #B8312F 10px,
-    #fff 10px,
-    #fff 20px,
-    #1A1A1A 20px,
-    #1A1A1A 30px
-  );
-  height: 4px;
+  height: 3px;
+  background: #D4A574;
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const siteUrl = 'https://lawrangebarbershop.com';
 const shareText =
-  "Check out Law Range Barber Shop — classic cuts and timeless style in downtown Sumter, SC. Walk-ins welcome mornings, appointments available afternoons!";
+  'Check out Law Range Barber Shop — "Look Sharp and Be Sharp!" Straight razor shaves, classic haircuts & the newest trends in downtown Sumter, SC!';
 
 export default function ShareButtons() {
   const [copied, setCopied] = useState(false);
