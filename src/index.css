@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Scrollbar hiding */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #F5F1E8; }
+::-webkit-scrollbar-thumb { background: #D4A574; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #B8864E; }
+
+/* ── SCROLL REVEAL ── */
+.scroll-reveal,
+.scroll-reveal-left,
+.scroll-reveal-right,
+.scroll-reveal-scale {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+.scroll-reveal       { transform: translateY(30px); }
+.scroll-reveal-left  { transform: translateX(-30px); }
+.scroll-reveal-right { transform: translateX(30px); }
+.scroll-reveal-scale { transform: scale(0.95); }
+
+.scroll-reveal.revealed,
+.scroll-reveal-left.revealed,
+.scroll-reveal-right.revealed,
+.scroll-reveal-scale.revealed {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* ── STAGGER CHILDREN ── */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stagger-children.revealed > *:nth-child(1)  { transition-delay: 0.0s; }
+.stagger-children.revealed > *:nth-child(2)  { transition-delay: 0.12s; }
+.stagger-children.revealed > *:nth-child(3)  { transition-delay: 0.24s; }
+.stagger-children.revealed > *:nth-child(4)  { transition-delay: 0.36s; }
+.stagger-children.revealed > *:nth-child(5)  { transition-delay: 0.48s; }
+.stagger-children.revealed > *:nth-child(6)  { transition-delay: 0.60s; }
+.stagger-children.revealed > *:nth-child(7)  { transition-delay: 0.72s; }
+.stagger-children.revealed > *:nth-child(8)  { transition-delay: 0.84s; }
+.stagger-children.revealed > *:nth-child(9)  { transition-delay: 0.96s; }
+.stagger-children.revealed > *:nth-child(10) { transition-delay: 1.08s; }
+
+.stagger-children.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── KEN BURNS HERO ── */
+.ken-burns {
+  animation: kenburns 25s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+
+/* ── HERO ENTRANCE ── */
+.hero-enter > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeIn 0.8s ease forwards;
+}
+
+.hero-enter > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-enter > *:nth-child(2) { animation-delay: 0.3s; }
+.hero-enter > *:nth-child(3) { animation-delay: 0.5s; }
+.hero-enter > *:nth-child(4) { animation-delay: 0.7s; }
+.hero-enter > *:nth-child(5) { animation-delay: 0.9s; }
+
+@keyframes heroFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SCROLL INDICATOR ── */
+.scroll-indicator {
+  animation: scrollPulse 2s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.6; transform: scaleY(1); }
+  50%      { opacity: 0.2; transform: scaleY(1.3); }
+}
+
+/* ── CARD LIFT ── */
+.card-lift {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ── ACCENT LINE ── */
+.accent-line::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: #D4A574;
+  margin-bottom: 16px;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.accent-line:hover::before {
+  width: 64px;
+}
+
+.accent-line-center::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: #D4A574;
+  margin: 0 auto 16px;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.accent-line-center:hover::before {
+  width: 64px;
+}
+
+/* ── NAV LINK UNDERLINE ── */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #D4A574;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── SECTION DIVIDER ── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #D4A574, transparent);
+}
+
+/* ── FLOATING BADGE ── */
+.floating-badge {
+  animation: floatBadge 3s ease-in-out infinite;
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* ── BARBER POLE STRIPE ── */
+.barber-stripe {
+  background: repeating-linear-gradient(
+    -45deg,
+    #B8312F,
+    #B8312F 10px,
+    #fff 10px,
+    #fff 20px,
+    #1A1A1A 20px,
+    #1A1A1A 30px
+  );
+  height: 4px;
+}

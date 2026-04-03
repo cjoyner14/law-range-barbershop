@@ -1,0 +1,16 @@
+{
+  "name": "Law Range Barber Shop",
+  "short_name": "Law Range",
+  "description": "Classic cuts and timeless style in downtown Sumter, SC. Walk-ins welcome mornings, appointments available afternoons.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1A1A1A",
+  "theme_color": "#1A1A1A",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
